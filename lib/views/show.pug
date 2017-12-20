@@ -44,13 +44,14 @@ block content
     tbody
       tr
         td Current price
-        td= alert.latestPrice === Infinity ? 'Updating... *' : `$${alert.latestPrice}`
+        if alert.initialCheck === false
+          td= alert.latestPrice === Infinity ? `Updating... Refresh to update ${alert.initialCheck}` : `$${alert.latestPrice}`
+        else
+          td= alert.latestPrice === Infinity ? 'Couldn\'t fetch price. Double-check inputs!' : `$${alert.latestPrice}`
+
       tr
         td Alert price
         td $#{alert.price}
-      tr
-        td= alert.latestPrice === Infinity ? '*' : ''
-        td= alert.latestPrice === Infinity ? 'Verify correct information if not updated after refresh' : ''
 
   div.graph!= graph
 
